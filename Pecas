@@ -19,7 +19,7 @@ public class Pecas implements Serializable{
     private Clientes comprador = Clientes.nenhum;
     
     public Pecas(String nome, int categoria, double preco){
-        
+        //Declaracoes iniciais
         this.id = registrados;
         registrados++;
         this.nome = nome;
@@ -29,13 +29,13 @@ public class Pecas implements Serializable{
     }
     
     public static void venderPeca(String nomeCliente, String cpf, int idPeca){
-        
+        //Verificando se o id existe
         if(idPeca >= 0 && idPeca < registrados){
-            
+            //Procurando Cliente Igual
             for (int i = 0; i < Main.clientes.size(); i++) {
-                
+                //Verificando se estamos falando do mesmo cliente
                 if(cpf.equalsIgnoreCase(Main.clientes.get(i).getCpf())){
-                    
+                    //Adicioando na lista de compras do cliente
                     Main.clientes.get(i).getCompras().add(Main.estoque.get(idPeca));
                     
                 }
@@ -43,7 +43,7 @@ public class Pecas implements Serializable{
             }
             //Nao achou nenhum cliente com o mesmo CPF
             if(cpf.length() == 11){
-                
+                //Adicionando novo cliente
                 Main.clientes.add(new Clientes(nomeCliente,cpf,Main.estoque.get(idPeca)));
             }
         }
@@ -51,7 +51,7 @@ public class Pecas implements Serializable{
     }
     
     public static String getCategoriaString(int num){
-        
+        //Selecionar Categorias
         switch(num){
             
             case 1:
@@ -132,7 +132,7 @@ public class Pecas implements Serializable{
     
     @Override
     public String toString(){
-        
+        //Pegando informacoes da peca
         String str = id+" | "+nome+" | R$"+preco+" | " + this.getCategoriaString(categoria) + " | Comprador: " + comprador.getNome();
         return str;
         
