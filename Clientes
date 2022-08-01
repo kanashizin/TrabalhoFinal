@@ -21,7 +21,9 @@ public class Clientes implements Serializable{
     public static Clientes nenhum = new Clientes("nenhum","000000000-00");
             
     public Clientes(String nome, String cpf){
+        //Declaracoes inicias padrao
         compras = new ArrayList();
+        //Validando CPF
         if(cpf.length() == 12){
             
             this.cpf = cpf;
@@ -32,8 +34,9 @@ public class Clientes implements Serializable{
     }
     
     public Clientes(String nome, String cpf, Pecas peca){
-        
+        //Declaracoes iniciais com a adicicao de uma peca no momento do cadastro
         compras = new ArrayList();
+        //Adicionando a peca na lista de compras
         compras.add(peca);
         if(cpf.length() == 12){
             
