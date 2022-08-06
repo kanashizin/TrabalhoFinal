@@ -24,7 +24,7 @@ public class Clientes implements Serializable{
         //Declaracoes inicias padrao
         compras = new ArrayList();
         //Validando CPF
-        if(cpf.length() == 12){
+        if(cpf.length() == 11){
             
             this.cpf = cpf;
             
