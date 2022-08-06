@@ -85,7 +85,7 @@ public class Main {
                 temp = new Pecas(nomeTemp,categoria,valor);
                 System.out.println("Foi adicionada a peca " + temp.getNome());
                 estoque.add(temp);
-                
+                saving();
                 break;
                 
             //Opcao 2   
@@ -106,6 +106,13 @@ public class Main {
                 //Verificando se o id informado esta fora do tamanho da lista de produtos
                 if(idPeca < 0 && idPeca > estoque.size()){
                     return;
+                }else {
+                   Pecas atual = estoque.get(idPeca);
+                   if(!atual.getComprador().getNome().equalsIgnoreCase("nenhum")){
+                       System.out.println("Essa peça ja foi vendida!");
+                       return;
+                   } 
+                    
                 }
                 
                 //Perguntando nome do cliente a comprar
@@ -127,7 +134,6 @@ public class Main {
                 }
                 
                 for (int i = 0; i < clientes.size(); i++) {
-                    
                     if (clientes.get(i).getCpf().equalsIgnoreCase(cpf)) {
                         //Cliente Existente
                         System.out.println("Esse cliente ja existe");
@@ -137,6 +143,7 @@ public class Main {
                             if (estoque.get(j).getId() == idPeca) {
                                 //Adicionando peca na conta desse cliente
                                 clientes.get(i).addCompra(estoque.get(j));
+                                saving();
                                 return;
                             }
                             
@@ -207,9 +214,11 @@ public class Main {
         //Recebendo objeto Peca
         Pecas peca;
         peca = (Pecas) objInput.readObject();
+        
         while(peca != null){
             //Adicionando objeto peca no estoque
             estoque.add(peca);
+            Pecas.setRegistrados(estoque.size());
             peca = (Pecas) objInput.readObject();
             
         }
